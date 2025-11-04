@@ -51,40 +51,6 @@ Command‑line application that manages a small vehicle‑rental agency with emp
 - `SystemInterface`
   - `initialized()`; `initSystem(CurrentRates, Vehicles, Transactions)`
   - Methods invoked by UIs for quoting, reserving, renting/returning, listing, and reporting
-
-## 🔧 Main Program Sketch (given)
-
-```java
-public class AgencyRentalProgram {
-    public static void main(String[] args) {
-        CurrentRates agency_rates = new CurrentRates(
-            new VehicleRates(xx, xx, xx, xx, xx),   // cars
-            new VehicleRates(xx, xx, xx, xx, xx),   // SUVs
-            new VehicleRates(xx, xx, xx, xx, xx)    // minivans
-        );
-
-        Vehicles agency_vehicles = new Vehicles();
-        populate(agency_vehicles); // private static helper (you implement)
-
-        Transactions transactions = new Transactions();
-
-        java.util.Scanner input = new java.util.Scanner(System.in);
-        UserInterface ui;
-        boolean quit = false;
-
-        while (!quit) {
-            ui = getUI(input);
-            if (ui == null) { quit = true; }
-            else {
-                if (!SystemInterface.initialized())
-                    SystemInterface.initSystem(agency_rates, agency_vehicles, transactions);
-                ui.start(input);
-            }
-        }
-    }
-}
-```
-
 ## 🗺️ Execution Flow
 
 1. **Select role**: Employee or Manager.
@@ -102,7 +68,7 @@ public class AgencyRentalProgram {
 - **Return**: `CurrentRates.calcActualCost(quotedRates, daysUsed, miles, insurance)`
 - **Log**: append `Transaction` to `Transactions` (linked list)
 
-## 📦 Project Layout (suggested)
+## 📦 Project Layout (Idea)
 
 ```
 /src
@@ -125,21 +91,6 @@ javac -d out $(find src -name "*.java")
 # Run
 java -cp out main.AgencyRentalProgram
 ```
-
-## 🧰 Configuration
-
-Replace the placeholder `xx` values with concrete numbers when constructing `VehicleRates` for each type:
-
-```java
-new VehicleRates(
-  /* daily */ 49.99,
-  /* weekly */ 299.99,
-  /* monthly */ 999.99,
-  /* per-mile */ 0.35,
-  /* daily insurance */ 19.99
-);
-```
-
 ---
 
 This README documents the structure and behavior expected by the provided specification so it can accompany your finished code on GitHub.
